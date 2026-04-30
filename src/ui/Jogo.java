@@ -1,9 +1,12 @@
 package ui;
 
 
+import java.awt.CardLayout;
+import java.awt.Image;
 import java.awt.KeyboardFocusManager;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import jogo_cobra.Cobra;
 
 
@@ -14,11 +17,49 @@ public class Jogo extends javax.swing.JFrame {
 
     public Jogo() {
         initComponents();
+        //-----------------BOTAO DE CIMA-----------------------------------------------------
+        ImageIcon icon = new ImageIcon(getClass().getResource("/assets/seta_cima.png"));
+        Image imgCima = icon.getImage().getScaledInstance(40, 40 , Image.SCALE_FAST);
+        btnCima.setIcon(new ImageIcon(imgCima));
+        btnCima.setContentAreaFilled(false); 
+        btnCima.setBorderPainted(false);     
+        btnCima.setFocusPainted(false);      
+        btnCima.setOpaque(false);            
+        //-----------------BOTAO DA DIREITA-----------------------------------------------------
+        ImageIcon iconDireita = new ImageIcon(getClass().getResource("/assets/seta_direita.png"));
+        Image imgDireita = iconDireita.getImage().getScaledInstance(40, 40, Image.SCALE_FAST);
+        btnDireita.setIcon(new ImageIcon(imgDireita));
+        btnDireita.setContentAreaFilled(false);
+        btnDireita.setBorderPainted(false);
+        btnDireita.setFocusPainted(false);
+        btnDireita.setOpaque(false);
+        //-----------------BOTAO DA ESQUERDA-----------------------------------------------------
+        ImageIcon iconEsquerda = new ImageIcon(getClass().getResource("/assets/seta_esquerda.png"));
+        Image imgEsquerda = iconEsquerda.getImage().getScaledInstance(40, 40, Image.SCALE_FAST);
+        btnEsquerda.setIcon(new ImageIcon(imgEsquerda));
+        btnEsquerda.setContentAreaFilled(false);
+        btnEsquerda.setBorderPainted(false);
+        btnEsquerda.setFocusPainted(false);
+        btnEsquerda.setOpaque(false);
+        //-----------------BOTAO DE BAIXO-----------------------------------------------------
+        ImageIcon iconBaixo = new ImageIcon(getClass().getResource("/assets/seta_baixo.png"));
+        Image imgBaixo = iconBaixo.getImage().getScaledInstance(40, 40, Image.SCALE_FAST);
+        btnBaixo.setIcon(new ImageIcon(imgBaixo));
+        btnBaixo.setContentAreaFilled(false);
+        btnBaixo.setBorderPainted(false);
+        btnBaixo.setFocusPainted(false);
+        btnBaixo.setOpaque(false);
+        //----------------------------------------------------------------------------------------
+        pnlBotaoCima.setOpaque(false);
+        pnlBotaoBaixo.setOpaque(false);
         setFocusable(true);
         requestFocus();
+        CardLayout layout = new CardLayout();
+        pnlVisor.setLayout(layout);
+        pnlVisor.add(jogo, "jogo");
         jogo.setVisible(true);
-        pnlVisor.add(jogo);
         jogo.iniciar();
+        layout.show(pnlVisor, "jogo");
          KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> 
          {
             if (e.getID() == KeyEvent.KEY_PRESSED) {
@@ -41,7 +82,7 @@ public class Jogo extends javax.swing.JFrame {
     private void initComponents() {
 
         root = new javax.swing.JPanel();
-        pnlBaixo = new javax.swing.JPanel();
+        pnlBaixo = new PainelFundo("/assets/tela_fundo_comandos.png", 400, 100);
         pnlBotaoCima = new javax.swing.JPanel();
         btnCima = new javax.swing.JButton();
         pnlBotaoBaixo = new javax.swing.JPanel();
@@ -59,7 +100,6 @@ public class Jogo extends javax.swing.JFrame {
         root.setLayout(new java.awt.BorderLayout());
 
         pnlBaixo.setBackground(new java.awt.Color(255, 255, 255));
-        pnlBaixo.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 5, 5, 5, new java.awt.Color(0, 0, 0)));
         pnlBaixo.setMaximumSize(new java.awt.Dimension(400, 100));
         pnlBaixo.setMinimumSize(new java.awt.Dimension(400, 100));
         pnlBaixo.setLayout(new javax.swing.BoxLayout(pnlBaixo, javax.swing.BoxLayout.Y_AXIS));
@@ -70,28 +110,30 @@ public class Jogo extends javax.swing.JFrame {
         pnlBotaoCima.setPreferredSize(new java.awt.Dimension(400, 50));
         pnlBotaoCima.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10));
 
-        btnCima.setText("⬆️");
-        btnCima.setPreferredSize(new java.awt.Dimension(72, 30));
+        btnCima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/seta_cima.png"))); // NOI18N
+        btnCima.setFocusPainted(false);
+        btnCima.setPreferredSize(new java.awt.Dimension(60, 35));
         btnCima.addActionListener(this::btnCimaActionPerformed);
         pnlBotaoCima.add(btnCima);
 
         pnlBaixo.add(pnlBotaoCima);
 
         pnlBotaoBaixo.setBackground(new java.awt.Color(102, 102, 102));
-        pnlBotaoBaixo.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 10));
+        pnlBotaoBaixo.setPreferredSize(new java.awt.Dimension(400, 50));
+        pnlBotaoBaixo.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 0));
 
-        btnEsquerda.setText("⬅️");
-        btnEsquerda.setPreferredSize(new java.awt.Dimension(72, 30));
+        btnEsquerda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/seta_esquerda.png"))); // NOI18N
+        btnEsquerda.setPreferredSize(new java.awt.Dimension(60, 35));
         btnEsquerda.addActionListener(this::btnEsquerdaActionPerformed);
         pnlBotaoBaixo.add(btnEsquerda);
 
-        btnBaixo.setText("⬇️");
-        btnBaixo.setPreferredSize(new java.awt.Dimension(72, 30));
+        btnBaixo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/seta_baixo.png"))); // NOI18N
+        btnBaixo.setPreferredSize(new java.awt.Dimension(60, 35));
         btnBaixo.addActionListener(this::btnBaixoActionPerformed);
         pnlBotaoBaixo.add(btnBaixo);
 
-        btnDireita.setText("➡️");
-        btnDireita.setPreferredSize(new java.awt.Dimension(72, 30));
+        btnDireita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/seta_direita.png"))); // NOI18N
+        btnDireita.setPreferredSize(new java.awt.Dimension(60, 35));
         btnDireita.addActionListener(this::btnDireitaActionPerformed);
         pnlBotaoBaixo.add(btnDireita);
 
@@ -147,4 +189,5 @@ public class Jogo extends javax.swing.JFrame {
     private javax.swing.JPanel pnlVisor;
     private javax.swing.JPanel root;
     // End of variables declaration//GEN-END:variables
+
 }

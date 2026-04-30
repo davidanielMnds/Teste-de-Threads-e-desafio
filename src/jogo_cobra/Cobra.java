@@ -44,7 +44,7 @@ public class Cobra extends JPanel{
     }
 //-------------------------------- INICIAR JOGO --------------------------------  
     public void iniciar() {
-    Timer timer = new Timer(100, e->
+    Timer timer = new Timer(150, e->
     {
 //-------------------------------- LOGICA DE MOVIMENTACAO--------------------------------
         Point cabeca = cobra.getFirst();
