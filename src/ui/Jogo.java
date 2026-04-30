@@ -19,17 +19,21 @@ public class Jogo extends javax.swing.JFrame {
         jogo.setVisible(true);
         pnlVisor.add(jogo);
         jogo.iniciar();
-         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> {
-        if (e.getID() == KeyEvent.KEY_PRESSED) {
-            int tecla = e.getKeyCode();
-            if (tecla == KeyEvent.VK_RIGHT && jogo.direcaoX != -1) { jogo.direcaoX = 1;  jogo.direcaoY = 0; }
-            if (tecla == KeyEvent.VK_LEFT  && jogo.direcaoX != 1)  { jogo.direcaoX = -1; jogo.direcaoY = 0; }
-            if (tecla == KeyEvent.VK_DOWN  && jogo.direcaoY != -1) { jogo.direcaoY = 1;  jogo.direcaoX = 0; }
-            if (tecla == KeyEvent.VK_UP    && jogo.direcaoY != 1)  { jogo.direcaoY = -1; jogo.direcaoX = 0; }
-            if(tecla == KeyEvent.VK_Q) {jogo.adicionarBloco();}
-        }
-        return false;
-    });
+         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(e -> 
+         {
+            if (e.getID() == KeyEvent.KEY_PRESSED) {
+                int tecla = e.getKeyCode();
+                if (tecla == KeyEvent.VK_RIGHT && jogo.direcaoX != -1) { jogo.direcaoX = 1;  jogo.direcaoY = 0; }
+                if (tecla == KeyEvent.VK_LEFT  && jogo.direcaoX != 1)  { jogo.direcaoX = -1; jogo.direcaoY = 0; }
+                if (tecla == KeyEvent.VK_DOWN  && jogo.direcaoY != -1) { jogo.direcaoY = 1;  jogo.direcaoX = 0; }
+                if (tecla == KeyEvent.VK_UP    && jogo.direcaoY != 1)  { jogo.direcaoY = -1; jogo.direcaoX = 0; }
+                if(tecla == KeyEvent.VK_Q) {jogo.adicionarBloco();}
+            }
+            return false;
+        });
+        jogo.onGameOver = ()-> {
+        System.out.println("MORREU");
+        };
         
     }
     @SuppressWarnings("unchecked")
