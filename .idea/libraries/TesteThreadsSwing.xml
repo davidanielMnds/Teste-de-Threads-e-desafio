@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="TesteThreadsSwing">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/dist/TesteThreadsSwing.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
